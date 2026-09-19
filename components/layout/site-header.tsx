@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Suspense } from 'react'
 import { BrandMark } from '@/components/common/brand-mark'
 import { MobileNav } from '@/components/layout/mobile-nav'
 import { PrimaryNav } from '@/components/layout/primary-nav'
@@ -6,13 +7,13 @@ import { UserMenu } from '@/components/layout/user-menu'
 
 export function SiteHeader() {
     return (
-        <header className="fixed inset-x-0 top-0 z-40 px-3 pt-3 sm:px-6">
-            <div className="mx-auto flex h-12 max-w-4xl items-center gap-4 rounded-full border border-white/60 bg-white/90 px-3 shadow-[0_4px_24px_rgba(0,0,0,0.09)] backdrop-blur-xl">
-                <MobileNav />
-                <Link href="/" aria-label="TenderIQ home"><BrandMark /></Link>
-                <div className="flex flex-1 justify-center"><PrimaryNav /></div>
+        <header className="pointer-events-none fixed inset-x-0 top-0 z-40 px-3 pt-3 sm:px-6">
+            <nav aria-label="Primary navigation" className="pointer-events-auto isolate mx-auto flex h-12 max-w-[58rem] items-center gap-2 rounded-full bg-card/95 px-2.5 text-card-foreground shadow-nav ring-1 ring-foreground/10 backdrop-blur-xl sm:gap-4 sm:px-3">
+                <Suspense fallback={<span className="size-10 shrink-0 md:hidden" aria-hidden="true" />}><MobileNav /></Suspense>
+                <Link href="/" aria-label="TenderIQ home" className="flex h-11 shrink-0 items-center rounded-full px-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"><BrandMark /></Link>
+                <div className="flex flex-1 justify-center"><Suspense fallback={<span className="hidden h-9 w-72 md:block" aria-hidden="true" />}><PrimaryNav /></Suspense></div>
                 <UserMenu />
-            </div>
+            </nav>
         </header>
     )
 }

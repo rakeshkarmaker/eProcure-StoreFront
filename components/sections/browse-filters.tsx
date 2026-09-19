@@ -5,14 +5,12 @@ import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/in
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 
-const sectors = ['All Sectors', 'Infrastructure', 'Energy', 'Healthcare', 'ICT', 'Defense']
 const budgetOptions = [
-    { value: 'under-1', label: 'Under $1M' },
-    { value: '1-50', label: '$1M—$50M' },
-    { value: '50-500', label: '$50M—$500M' },
-    { value: '500-plus', label: '$500M+' },
+    { value: 'under-1', label: 'Under ৳1M' },
+    { value: '1-50', label: '৳1M—৳50M' },
+    { value: '50-500', label: '৳50M—৳500M' },
+    { value: '500-plus', label: '৳500M+' },
 ]
-const authorityOptions = ['Roads & Highways Dept', 'ICT Ministry', 'Ministry of Health']
 
 export type BrowseFilterProps = {
     sector: string
@@ -25,10 +23,12 @@ export type BrowseFilterProps = {
     onDeadlineChange: (value: string) => void
     authorities: string[]
     onAuthorityToggle: (value: string) => void
+    sectorOptions: string[]
+    authorityOptions: string[]
     idPrefix?: string
 }
 
-export function BrowseFilters({ sector, onSectorChange, query, onQueryChange, budgets, onBudgetToggle, deadline, onDeadlineChange, authorities, onAuthorityToggle, idPrefix = 'desktop' }: BrowseFilterProps) {
+export function BrowseFilters({ sector, onSectorChange, query, onQueryChange, budgets, onBudgetToggle, deadline, onDeadlineChange, authorities, onAuthorityToggle, sectorOptions, authorityOptions, idPrefix = 'desktop' }: BrowseFilterProps) {
     return (
         <FieldGroup>
             <Field>
@@ -41,7 +41,7 @@ export function BrowseFilters({ sector, onSectorChange, query, onQueryChange, bu
             <FieldSet>
                 <FieldLegend variant="label">Sectors</FieldLegend>
                 <ToggleGroup type="single" value={sector} onValueChange={(value) => value && onSectorChange(value)} className="flex flex-wrap justify-start">
-                    {sectors.map((item) => <ToggleGroupItem key={item} value={item} size="sm" className="rounded-full">{item}</ToggleGroupItem>)}
+                    {sectorOptions.map((item) => <ToggleGroupItem key={item} value={item} size="sm" className="rounded-full">{item}</ToggleGroupItem>)}
                 </ToggleGroup>
             </FieldSet>
             <FieldSet>

@@ -11,7 +11,7 @@ const groups = [
 export function SiteFooter() {
     return (
         <footer className="mt-auto border-t bg-card">
-            <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-6 py-10 md:grid-cols-4">
+            <div className="mx-auto grid max-w-6xl grid-cols-2 gap-8 px-4 py-10 sm:px-6 md:grid-cols-4">
                 <div className="col-span-2 flex flex-col gap-3 md:col-span-1">
                     <BrandMark />
                     <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">Intelligence for global procurement. Helping vendors discover and win government contracts.</p>
@@ -26,7 +26,7 @@ export function SiteFooter() {
                 ))}
             </div>
             <Separator />
-            <div className="mx-auto flex max-w-6xl flex-col gap-3 px-6 py-4 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+            <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-4 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-6">
                 <span>© 2024 TenderIQ. Intelligence for Global Procurement.</span>
                 <div className="flex gap-4"><Link href="#">Privacy</Link><Link href="#">Terms</Link><Link href="#">Support</Link></div>
             </div>

@@ -24,6 +24,8 @@
   --color-success-foreground: var(--success-foreground);
   --color-warning: var(--warning);
   --color-warning-foreground: var(--warning-foreground);
+  --color-category: var(--category);
+  --color-category-foreground: var(--category-foreground);
   --color-info: var(--info);
   --color-info-foreground: var(--info-foreground);
   --color-border: var(--border);
@@ -89,6 +91,8 @@
   --success-foreground: oklch(1 0 0);
   --warning: oklch(0.76859 0.16466 70.08);
   --warning-foreground: oklch(0.19197 0.03055 263.47);
+  --category: oklch(0.702 0.183 48.2);
+  --category-foreground: oklch(1 0 0);
   --info: oklch(0.71484 0.12574 215.22);
   --info-foreground: oklch(0.19197 0.03055 263.47);
   --border: oklch(0 0 0 / 8%);
@@ -130,6 +134,8 @@
   --success-foreground: oklch(0.151 0.025 264);
   --warning: oklch(0.8 0.15 70.08);
   --warning-foreground: oklch(0.151 0.025 264);
+  --category: oklch(0.75 0.16 55);
+  --category-foreground: oklch(0.151 0.025 264);
   --info: oklch(0.76 0.11 215.22);
   --info-foreground: oklch(0.151 0.025 264);
   --border: oklch(1 0 0 / 10%);
@@ -156,7 +162,7 @@
   }
 
   html {
-    font-size: 15px;
+    font-size: 16px;
     @apply font-sans;
   }
 
@@ -190,14 +196,4 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-35%); }
-}
-
-.animate-marquee {
-  width: max-content;
-  animation: marquee 28s linear infinite;
 }
