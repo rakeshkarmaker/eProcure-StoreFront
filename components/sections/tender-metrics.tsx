@@ -1,15 +1,20 @@
-const metrics = [
-    ['Estimated value', '₹84.5 Cr', 'Est. contract value'], ['EMD amount', '₹1.69 Cr', 'Earnest money deposit'],
-    ['Security deposit', '5%', 'Performance security'], ['Submission deadline', 'Mar 28, 2025', '14 days left'],
-    ['Tender type', 'Open Tender', 'National competitive bid'], ['Procurement method', 'e-Procurement', 'Two-bid system'],
-    ['Bid opening date', 'Apr 02, 2025', '10:00 AM IST'],
-]
+import { formatBdt, formatTenderDate } from '@/lib/tenders/transform'
+import type { TenderApiRecord } from '@/lib/tenders/types'
 
-export function TenderMetrics() {
+export function TenderMetrics({ tender }: { tender: TenderApiRecord }) {
+    const metrics = [
+        ['Tender security', formatBdt(tender.lots?.[0]?.securityAmount), tender.lots?.length ? `First of ${tender.lots.length} lot${tender.lots.length === 1 ? '' : 's'}` : 'No lot security published'],
+        ['Document price', formatBdt(tender.docPriceInBDT), tender.modeOfPayment || 'Payment method not specified'],
+        ['Submission deadline', formatTenderDate(tender.closingDate), tender.lastSecuritySubmissionDate ? `Security by ${formatTenderDate(tender.lastSecuritySubmissionDate)}` : 'Closing date'],
+        ['Tender type', tender.procurementType || tender.procurementNature || 'Not specified', tender.typeMethod || tender.eventType || 'Procurement classification'],
+        ['Procurement method', tender.procurementMethod || 'Not specified', tender.evaluationType || 'Evaluation type not specified'],
+        ['Source of funds', tender.sourceOfFunds || 'Not specified', tender.budgetType || 'Budget type not specified'],
+        ['Bid opening date', formatTenderDate(tender.openingDate), tender.openingDate || 'Opening schedule not published'],
+    ]
     return (
-        <section className="max-w-full overflow-x-auto border-b bg-secondary/25">
-            <div className="mx-auto flex min-w-max max-w-7xl divide-x">
-                {metrics.map(([label, value, detail]) => <div key={label} className="px-5 py-4"><p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground">{label}</p><p className="mt-1.5 font-mono text-lg font-extrabold text-primary">{value}</p><p className="mt-1 text-xs text-muted-foreground">{detail}</p></div>)}
+        <section className="border-b bg-secondary/25">
+            <div className="mx-auto grid max-w-7xl grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
+                {metrics.map(([label, value, detail]) => <div key={label} className="border-b border-r px-4 py-4 last:border-r-0 xl:border-b-0"><p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{label}</p><p className="mt-1.5 font-mono text-base font-extrabold text-primary sm:text-lg">{value}</p><p className="mt-1 text-xs leading-relaxed text-muted-foreground">{detail}</p></div>)}
             </div>
         </section>
     )
