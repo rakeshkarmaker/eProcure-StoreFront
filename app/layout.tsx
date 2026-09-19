@@ -28,7 +28,7 @@ const notoSansBengali = Noto_Sans_Bengali({
 
 export const metadata: Metadata = {
   title: "TenderIQ",
-  description: "Intelligence for global procurement.",
+  description: "Signal-rich intelligence for Bangladesh procurement.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

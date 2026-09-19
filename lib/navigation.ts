@@ -3,4 +3,5 @@ export const navItems = [
     { label: 'Browse', href: '/browse' },
     { label: 'Vendors', href: '/browse?view=vendors' },
     { label: 'Intelligence', href: '/intelligence' },
+    { label: 'Plans', href: '/subscription' },
 ]
